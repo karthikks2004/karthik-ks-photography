@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 
-# AFTER DEPLOYING: replace the line below with your real site address, e.g.
-# Sitemap: https://your-site-name.netlify.app/sitemap.xml
+Sitemap: https://karthik-ks-photography.netlify.app/sitemap.xml

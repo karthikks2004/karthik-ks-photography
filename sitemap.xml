@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- AFTER DEPLOYING: replace https://YOUR-SITE-URL/ with your real address (see README.md, step 5). -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://YOUR-SITE-URL/</loc>
+    <loc>https://karthik-ks-photography.netlify.app/</loc>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
