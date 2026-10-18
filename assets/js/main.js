@@ -222,44 +222,12 @@
   }, { passive: true });
 })();
 
-/* ---------- Book a Shoot modal ---------- */
+/* ---------- Book a Shoot inline form ---------- */
 (function(){
-  var fab = document.getElementById('book-fab');
-  var overlay = document.getElementById('book-overlay');
-  var closeBtn = document.getElementById('book-close');
   var form = document.getElementById('book-form');
   var success = document.getElementById('book-success');
-  if(!fab||!overlay) return;
+  if(!form) return;
 
-  function openModal(){
-    overlay.classList.add('open');
-    overlay.setAttribute('aria-hidden','false');
-    document.body.style.overflow='hidden';
-    closeBtn.focus();
-  }
-  function closeModal(){
-    overlay.classList.remove('open');
-    overlay.setAttribute('aria-hidden','true');
-    document.body.style.overflow='';
-    fab.focus();
-    // reset form after close animation
-    setTimeout(function(){
-      form.style.display='';
-      success.style.display='none';
-      form.reset();
-    },350);
-  }
-
-  fab.addEventListener('click', openModal);
-  closeBtn.addEventListener('click', closeModal);
-  overlay.addEventListener('click', function(e){
-    if(e.target===overlay) closeModal();
-  });
-  document.addEventListener('keydown', function(e){
-    if(e.key==='Escape' && overlay.classList.contains('open')) closeModal();
-  });
-
-  // Form submission via Netlify Forms (fetch)
   form.addEventListener('submit', function(e){
     e.preventDefault();
     var data = new FormData(form);

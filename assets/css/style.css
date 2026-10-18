@@ -348,3 +348,39 @@ body.lb-lock{overflow:hidden}
 }
 .hero-latest-strip a:hover{border-color:var(--accent);transform:scale(1.08)}
 .hero-latest-strip img{width:100%;height:100%;object-fit:cover}
+
+/* ---------- Contact booking form ---------- */
+.contact-form{display:flex;flex-direction:column;gap:18px;margin-top:28px;max-width:560px}
+.contact-form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:500px){.contact-form-row{grid-template-columns:1fr}}
+.contact-form-field{display:flex;flex-direction:column;gap:6px}
+.contact-form-field label{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.contact-form-field input,.contact-form-field select,.contact-form-field textarea{
+  background:var(--bg-2);border:1px solid var(--line);border-radius:8px;
+  color:var(--text);padding:12px 14px;font-size:15px;font-family:var(--sans);
+  transition:border-color .2s;
+}
+.contact-form-field input::placeholder,.contact-form-field textarea::placeholder{color:var(--faint)}
+.contact-form-field input:focus,.contact-form-field select:focus,.contact-form-field textarea:focus{
+  outline:none;border-color:var(--accent);
+}
+.contact-form-field select{appearance:none;-webkit-appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23a3a39e' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 14px center;padding-right:36px;
+}
+.contact-form-field select option{background:var(--panel);color:var(--text)}
+.contact-form-field textarea{resize:vertical;min-height:60px}
+.contact-form-submit{width:100%;margin-top:4px;border-radius:8px}
+.contact-form-submit:hover{background:var(--accent);border-color:var(--accent);color:#080808}
+.contact-form-success{text-align:center;padding:40px 0 20px}
+.contact-form-check{
+  width:64px;height:64px;margin:0 auto 20px;
+  border-radius:50%;border:2px solid var(--accent);
+  display:flex;align-items:center;justify-content:center;
+  font-size:28px;color:var(--accent);animation:check-pop .4s ease;
+}
+.contact-form-success h3{font-family:var(--serif);font-size:24px;margin:0 0 8px}
+.contact-form-success p{color:var(--muted);margin:0}
+.contact-divider{text-align:center;margin:32px 0 24px;position:relative}
+.contact-divider::before{content:'';position:absolute;left:0;right:0;top:50%;height:1px;background:var(--line)}
+.contact-divider span{position:relative;background:var(--bg);padding:0 20px;font-size:13px;color:var(--faint);text-transform:uppercase;letter-spacing:.12em}
