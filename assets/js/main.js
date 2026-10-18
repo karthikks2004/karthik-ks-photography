@@ -230,6 +230,8 @@
 
   form.addEventListener('submit', function(e){
     e.preventDefault();
+    var btn = form.querySelector('.bf-submit');
+    if(btn){btn.disabled=true;btn.textContent='Sending…';}
     var data = new FormData(form);
     fetch('/', {
       method:'POST',
@@ -237,8 +239,11 @@
       body: new URLSearchParams(data).toString()
     }).then(function(){
       form.style.display='none';
-      success.style.display='block';
+      success.style.display='flex';
+      success.style.flexDirection='column';
+      success.style.alignItems='center';
     }).catch(function(){
+      if(btn){btn.disabled=false;btn.textContent='Send Booking Request';}
       alert('Something went wrong. Please try emailing karthikksphotography@gmail.com directly.');
     });
   });

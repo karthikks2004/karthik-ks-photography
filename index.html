@@ -353,68 +353,95 @@
   </div>
 </section>
 
-<section class="section" id="contact" aria-labelledby="contact-title">
-  <div class="wrap contact">
-    <div class="reveal">
-      <p class="kicker">Get in touch</p>
-      <h2 id="contact-title" style="margin-bottom:22px">Book a Shoot &amp; <em class="soft">Connect</em></h2>
-      <p class="lead">Ready to book a shoot? Fill in the form below, or reach out via email or Instagram.</p>
-      <form class="contact-form" id="book-form" name="booking" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-        <input type="hidden" name="form-name" value="booking">
-        <p class="sr-only"><label>Don&rsquo;t fill this out: <input name="bot-field"></label></p>
-        <div class="contact-form-row">
-          <div class="contact-form-field">
-            <label for="b-name">Your Name</label>
-            <input id="b-name" name="name" type="text" placeholder="Your name" required>
+<section class="section booking-section" id="contact" aria-labelledby="contact-title">
+  <div class="wrap">
+    <div class="booking-layout">
+      <!-- Left: Info card -->
+      <div class="booking-info reveal">
+        <div class="booking-info-inner">
+          <p class="kicker">Let&rsquo;s create magic</p>
+          <h2 id="contact-title">Book a <em class="soft">Shoot</em></h2>
+          <p class="booking-tagline">Every great photograph starts with a conversation. Tell me your vision, and let&rsquo;s make it happen.</p>
+          <div class="booking-features">
+            <div class="booking-feature">
+              <span class="booking-icon">&#128247;</span>
+              <div><strong>Professional Quality</strong><span>Wedding, portrait, event, nature &amp; more</span></div>
+            </div>
+            <div class="booking-feature">
+              <span class="booking-icon">&#128205;</span>
+              <div><strong>All India</strong><span>Based in Kerala, available everywhere</span></div>
+            </div>
+            <div class="booking-feature">
+              <span class="booking-icon">&#9889;</span>
+              <div><strong>Quick Response</strong><span>I&rsquo;ll reply within 24 hours</span></div>
+            </div>
           </div>
-          <div class="contact-form-field">
-            <label for="b-email">Email or Phone</label>
-            <input id="b-email" name="contact" type="text" placeholder="Email or phone" required>
-          </div>
-        </div>
-        <div class="contact-form-row">
-          <div class="contact-form-field">
-            <label for="b-type">Type of Shoot</label>
-            <select id="b-type" name="shoot-type" required>
-              <option value="" disabled selected>Choose one&hellip;</option>
-              <option>Wedding</option>
-              <option>Pre-Wedding</option>
-              <option>Event</option>
-              <option>Portrait</option>
-              <option>Nature / Wildlife</option>
-              <option>Product</option>
-              <option>Other</option>
-            </select>
-          </div>
-          <div class="contact-form-field">
-            <label for="b-date">Preferred Date</label>
-            <input id="b-date" name="date" type="date">
+          <div class="booking-direct">
+            <p class="booking-direct-label">Or reach out directly</p>
+            <a href="mailto:karthikksphotography@gmail.com" class="booking-direct-link">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4l-10 8L2 4"/></svg>
+              karthikksphotography@gmail.com
+            </a>
+            <a href="https://www.instagram.com/karthik.ks_photography/" target="_blank" rel="noopener noreferrer" class="booking-direct-link">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+              @karthik.ks_photography
+            </a>
           </div>
         </div>
-        <div class="contact-form-field">
-          <label for="b-location">Location</label>
-          <input id="b-location" name="location" type="text" placeholder="City or venue">
-        </div>
-        <div class="contact-form-field">
-          <label for="b-msg">Message <span style="color:var(--faint);font-weight:400">(optional)</span></label>
-          <textarea id="b-msg" name="message" rows="3" placeholder="Tell me about your vision&hellip;"></textarea>
-        </div>
-        <button class="btn contact-form-submit" type="submit">Send Booking Request</button>
-      </form>
-      <div class="contact-form-success" id="book-success" style="display:none">
-        <div class="contact-form-check">&#10003;</div>
-        <h3>Request Sent!</h3>
-        <p>Thank you! I&rsquo;ll get back to you within 24 hours.</p>
       </div>
-      <div class="contact-divider"><span>or reach out directly</span></div>
-      <div class="actions">
-        <a class="btn ghost" href="mailto:karthikksphotography@gmail.com">Send an Email</a>
-        <a class="btn ghost" href="https://www.instagram.com/karthik.ks_photography/" target="_blank" rel="noopener noreferrer">Open Instagram &#8599;</a>
+      <!-- Right: Form card -->
+      <div class="booking-card reveal">
+        <form class="booking-form" id="book-form" name="booking" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="booking">
+          <p class="sr-only"><label>Don&rsquo;t fill this out: <input name="bot-field"></label></p>
+          <div class="bf-row">
+            <div class="bf-field">
+              <label for="b-name">Your Name</label>
+              <input id="b-name" name="name" type="text" placeholder="John Doe" required>
+            </div>
+            <div class="bf-field">
+              <label for="b-email">Email or Phone</label>
+              <input id="b-email" name="contact" type="text" placeholder="you@email.com" required>
+            </div>
+          </div>
+          <div class="bf-row">
+            <div class="bf-field">
+              <label for="b-type">Type of Shoot</label>
+              <select id="b-type" name="shoot-type" required>
+                <option value="" disabled selected>Choose one&hellip;</option>
+                <option>Wedding</option>
+                <option>Pre-Wedding</option>
+                <option>Event</option>
+                <option>Portrait</option>
+                <option>Nature / Wildlife</option>
+                <option>Product</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="bf-field">
+              <label for="b-date">Preferred Date</label>
+              <input id="b-date" name="date" type="date">
+            </div>
+          </div>
+          <div class="bf-field">
+            <label for="b-location">Location</label>
+            <input id="b-location" name="location" type="text" placeholder="City or venue name">
+          </div>
+          <div class="bf-field">
+            <label for="b-msg">Message <span style="color:var(--faint);font-weight:400">(optional)</span></label>
+            <textarea id="b-msg" name="message" rows="3" placeholder="Tell me about your vision&hellip;"></textarea>
+          </div>
+          <button class="btn bf-submit" type="submit">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            Send Booking Request
+          </button>
+        </form>
+        <div class="bf-success" id="book-success" style="display:none">
+          <div class="bf-check-ring"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <h3>Booking Request Sent!</h3>
+          <p>Thank you for reaching out. I&rsquo;ll get back to you within 24 hours.</p>
+        </div>
       </div>
-    </div>
-    <div class="contact-links reveal">
-      <a href="mailto:karthikksphotography@gmail.com"><span><small>Email</small><span class="v">karthikksphotography@gmail.com</span></span><span aria-hidden="true">&rarr;</span></a>
-      <a href="https://www.instagram.com/karthik.ks_photography/" target="_blank" rel="noopener noreferrer"><span><small>Instagram</small><span class="v">@karthik.ks_photography</span></span><span aria-hidden="true">&#8599;</span></a>
     </div>
   </div>
 </section>
