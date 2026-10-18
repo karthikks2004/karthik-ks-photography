@@ -221,3 +221,87 @@
     if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) show(pos + (dx < 0 ? 1 : -1));
   }, { passive: true });
 })();
+
+/* ---------- Book a Shoot modal ---------- */
+(function(){
+  var fab = document.getElementById('book-fab');
+  var overlay = document.getElementById('book-overlay');
+  var closeBtn = document.getElementById('book-close');
+  var form = document.getElementById('book-form');
+  var success = document.getElementById('book-success');
+  if(!fab||!overlay) return;
+
+  function openModal(){
+    overlay.classList.add('open');
+    overlay.setAttribute('aria-hidden','false');
+    document.body.style.overflow='hidden';
+    closeBtn.focus();
+  }
+  function closeModal(){
+    overlay.classList.remove('open');
+    overlay.setAttribute('aria-hidden','true');
+    document.body.style.overflow='';
+    fab.focus();
+    // reset form after close animation
+    setTimeout(function(){
+      form.style.display='';
+      success.style.display='none';
+      form.reset();
+    },350);
+  }
+
+  fab.addEventListener('click', openModal);
+  closeBtn.addEventListener('click', closeModal);
+  overlay.addEventListener('click', function(e){
+    if(e.target===overlay) closeModal();
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key==='Escape' && overlay.classList.contains('open')) closeModal();
+  });
+
+  // Form submission via Netlify Forms (fetch)
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var data = new FormData(form);
+    fetch('/', {
+      method:'POST',
+      headers:{'Content-Type':'application/x-www-form-urlencoded'},
+      body: new URLSearchParams(data).toString()
+    }).then(function(){
+      form.style.display='none';
+      success.style.display='block';
+    }).catch(function(){
+      alert('Something went wrong. Please try emailing karthikksphotography@gmail.com directly.');
+    });
+  });
+})();
+
+/* ---------- Hero latest Instagram strip ---------- */
+(function(){
+  var wrap = document.getElementById('hero-latest-wrap');
+  var strip = document.getElementById('hero-latest-strip');
+  if(!wrap||!strip||!window.fetch||location.protocol==='file:') return;
+  fetch('/api/ig-latest',{headers:{Accept:'application/json'}})
+    .then(function(r){return r.ok?r.json():null})
+    .then(function(d){
+      if(!d||!d.items||!d.items.length) return;
+      var count=0;
+      d.items.forEach(function(it){
+        if(count>=6) return;
+        if(!/^\/api\/ig-media\/\d+$/.test(it.image||'')) return;
+        var a=document.createElement('a');
+        if(it.permalink&&/^https:\/\/www\.instagram\.com\//.test(it.permalink)){
+          a.href=it.permalink; a.target='_blank'; a.rel='noopener noreferrer';
+        } else { a.href='#latest'; }
+        a.setAttribute('aria-label','Latest '+it.kind+' on Instagram');
+        var img=document.createElement('img');
+        img.src=it.image; img.alt=''; img.loading='lazy'; img.decoding='async';
+        img.addEventListener('error',function(){a.remove()});
+        a.appendChild(img);
+        strip.appendChild(a);
+        count++;
+      });
+      if(strip.children.length) wrap.style.display='';
+    })
+    .catch(function(){});
+})();

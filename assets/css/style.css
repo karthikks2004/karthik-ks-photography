@@ -232,5 +232,119 @@ body.lb-lock{overflow:hidden}
 
 /* latest from instagram (shown only when the sync has data) */
 #latest[hidden]{display:none}
-.latest .tile img{aspect-ratio:4/5;object-fit:cover}
-.latest .tile{flex-basis:clamp(180px,22vw,280px)}
+.latest-section{background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.latest .tile img{aspect-ratio:4/5;object-fit:cover;border-radius:6px;transition:transform .35s ease,box-shadow .35s ease}
+.latest .tile{flex-basis:clamp(180px,22vw,280px);position:relative;overflow:hidden;border-radius:6px}
+.latest .tile:hover img{transform:scale(1.04);box-shadow:0 8px 28px rgba(0,0,0,.5)}
+.latest-cta{text-align:center;margin-top:40px;padding-top:32px;border-top:1px solid var(--line)}
+.latest-cta p{color:var(--muted);font-size:17px;font-family:var(--serif);font-style:italic;margin:0 0 20px}
+
+/* ---------- Book a Shoot FAB + Modal ---------- */
+.book-fab{
+  position:fixed;bottom:28px;right:28px;z-index:90;
+  display:inline-flex;align-items:center;gap:10px;
+  padding:14px 24px;border:none;border-radius:50px;
+  background:var(--text);color:#080808;
+  font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  box-shadow:0 4px 24px rgba(0,0,0,.5);
+  cursor:pointer;transition:transform .25s,box-shadow .25s;
+  animation:fab-glow 2.5s ease-in-out infinite;
+}
+.book-fab:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,.6)}
+.book-fab svg{flex-shrink:0}
+@keyframes fab-glow{
+  0%,100%{box-shadow:0 4px 24px rgba(0,0,0,.5)}
+  50%{box-shadow:0 4px 32px rgba(217,212,199,.35),0 0 12px rgba(217,212,199,.2)}
+}
+
+.book-overlay{
+  position:fixed;inset:0;z-index:200;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(0,0,0,.7);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  opacity:0;pointer-events:none;transition:opacity .3s;
+}
+.book-overlay.open{opacity:1;pointer-events:auto}
+.book-overlay.open .book-modal{transform:translateY(0);opacity:1}
+
+.book-modal{
+  position:relative;width:min(540px,calc(100% - 32px));max-height:calc(100dvh - 48px);
+  overflow-y:auto;
+  background:var(--panel);border:1px solid var(--line);border-radius:16px;
+  padding:40px 36px 36px;
+  transform:translateY(24px);opacity:0;transition:transform .35s ease,opacity .35s ease;
+}
+.book-close{
+  position:absolute;top:16px;right:18px;background:none;border:none;
+  font-size:28px;color:var(--muted);line-height:1;transition:color .2s;
+}
+.book-close:hover{color:var(--text)}
+
+.book-header{text-align:center;margin-bottom:28px}
+.book-header .kicker{margin-bottom:10px}
+.book-header h2{font-size:clamp(28px,4vw,42px);margin-bottom:10px}
+.book-sub{color:var(--muted);font-size:14px;margin:0}
+
+.book-form{display:flex;flex-direction:column;gap:18px}
+.book-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:500px){.book-row{grid-template-columns:1fr}}
+.book-field{display:flex;flex-direction:column;gap:6px}
+.book-field label{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.book-field input,.book-field select,.book-field textarea{
+  background:var(--bg-2);border:1px solid var(--line);border-radius:8px;
+  color:var(--text);padding:12px 14px;font-size:15px;font-family:var(--sans);
+  transition:border-color .2s;
+}
+.book-field input::placeholder,.book-field textarea::placeholder{color:var(--faint)}
+.book-field input:focus,.book-field select:focus,.book-field textarea:focus{
+  outline:none;border-color:var(--accent);
+}
+.book-field select{appearance:none;-webkit-appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23a3a39e' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 14px center;padding-right:36px;
+}
+.book-field select option{background:var(--panel);color:var(--text)}
+.book-field textarea{resize:vertical;min-height:60px}
+.book-submit{width:100%;margin-top:4px;border-radius:8px;font-size:13px}
+.book-submit:hover{background:var(--accent);border-color:var(--accent);color:#080808}
+
+.book-success{text-align:center;padding:40px 0 20px}
+.book-check{
+  width:64px;height:64px;margin:0 auto 20px;
+  border-radius:50%;border:2px solid var(--accent);
+  display:flex;align-items:center;justify-content:center;
+  font-size:28px;color:var(--accent);
+  animation:check-pop .4s ease;
+}
+@keyframes check-pop{0%{transform:scale(0)}60%{transform:scale(1.15)}100%{transform:scale(1)}}
+.book-success h3{font-family:var(--serif);font-size:24px;margin:0 0 8px}
+.book-success p{color:var(--muted);margin:0}
+
+/* ---------- Hero: Book a Shoot button + Latest Instagram strip ---------- */
+.book-hero-btn{
+  background:transparent !important;color:var(--text) !important;
+  border:1px solid var(--accent) !important;
+  animation:hero-btn-pulse 2.5s ease-in-out infinite;
+}
+.book-hero-btn:hover{background:var(--accent) !important;color:#080808 !important}
+@keyframes hero-btn-pulse{
+  0%,100%{box-shadow:0 0 0 0 rgba(217,212,199,0)}
+  50%{box-shadow:0 0 18px 4px rgba(217,212,199,.25)}
+}
+
+.hero-latest{margin-top:32px}
+.hero-latest-label{
+  font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);
+  margin:0 0 12px;
+}
+.hero-latest-strip{
+  display:flex;gap:10px;overflow-x:auto;padding-bottom:6px;
+  scrollbar-width:thin;scrollbar-color:var(--line) transparent;
+}
+.hero-latest-strip::-webkit-scrollbar{height:4px}
+.hero-latest-strip::-webkit-scrollbar-thumb{background:var(--line);border-radius:4px}
+.hero-latest-strip a{
+  flex:0 0 auto;width:80px;height:80px;border-radius:8px;overflow:hidden;
+  border:1px solid var(--line);transition:border-color .25s,transform .25s;
+}
+.hero-latest-strip a:hover{border-color:var(--accent);transform:scale(1.08)}
+.hero-latest-strip img{width:100%;height:100%;object-fit:cover}
